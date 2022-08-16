@@ -39,4 +39,7 @@ class Continent extends Model
                                     'continent_id' ,
                                     'region_id');
     }
+    public function Region(){
+        return $this.belongsTo(Region::class, 'region_id');
+    } 
 }

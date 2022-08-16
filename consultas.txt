@@ -1,0 +1,69 @@
+--<<entity>>--
+1//
+Country::where('name', 'like', 'c%')->
+... select('country_code2')->
+... get()
+
+
+2//
+--suma(total)--
+Country::where('name' ,'like', 'c%')->
+... sum('area')
+3//
+ Country::where('area','>','2000000')->
+... select('name')->
+... get()
+
+4//
+Country::wherebetween('area', ['5000000', '10000000'])->
+... select('name', 'area')->
+... get()
+5//
+Country::select('national_day', 'name')->
+... wherebetween('national_day',['1492-10-12', '1789-07-14'])->
+... get()
+
+--dos <<entity>> --
+//1
+ Region::find(1)->paises()->select('name')->get()
+ //2
+ Continent::find(4)->regiones()->select('name')->get()
+ //3
+ Region::find(22)->paises()->select('name')->get()
+ //4
+Country::find(100)->region()->select('name')->get()
+
+--muchos a muchos--
+
+//1
+ Country::find(42)->idiomas
+ //2
+
+ //3
+ Country::find(48)->idiomas()->where('language', 'like', 'C%')->get()
+
+ //4
+  Country::find(224)->idiomas()->
+... where('official','1')->
+... get()
+
+-- tres <<entity>>--
+//1
+Continent::find(2)->paises()->
+... where('area', '>', '1000000')->
+... select('area')->
+... get()
+//2
+Continent::find(3)->paises()->
+... sum('area')
+//3
+Region::find(6)->paises()->
+... avg('area')
+Continent::find(5)->paises()->
+... avg('area')
+//4
+Region::find(22)->paises()->
+... sum('area')
+//5
+
+//6

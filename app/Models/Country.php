@@ -26,4 +26,9 @@ class Country extends Model
                                     'language_id'
                                     )->withPivot('official');
     }
+
+    public function region(){
+        return $this->belongsTo(Region::class , 'region_id');
+    }
+
 }
